@@ -4,7 +4,8 @@ const sequelize = require("../config/connection");
 class Dep extends Model {}
 // model frame goes here with - datatypes attributes
 
-Dep.init({
+Dep.init(
+  {
     // table collumns
     dep_id: {
       type: DataTypes.INTEGER,
@@ -13,7 +14,7 @@ Dep.init({
     },
     dep_name: {
       type: DataTypes.STRING,
-    }
+    },
   },
   {
     sequelize,
@@ -21,6 +22,7 @@ Dep.init({
     freezeTableName: true,
     underscored: true,
     modelName: "Dep",
-  });
+  }
+);
 
 module.exports = Dep;
