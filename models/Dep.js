@@ -9,11 +9,13 @@ Dep.init(
     // table collumns
     dep_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
     dep_name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
@@ -21,7 +23,7 @@ Dep.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "Dep",
+    modelName: "Departments",
   }
 );
 
