@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const Emps = require("../../models/Emps");
+const Dep = require("../../models/Dep");
 
-// CREATE a new Emps
+// CREATE a new Dep
 router.post("/", async (req, res) => {
   try {
-    const newEmp = req.body;
-    const empData = await Emps.create(newEmp);
-    res.status(200).json(empData);
+    const newDep = req.body;
+    const depData = await Dep.create(newDep);
+    res.status(200).json(depData);
   } catch (err) {
     res.status(400).json(err);
   }
