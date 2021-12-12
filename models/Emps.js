@@ -3,11 +3,10 @@ const sequelize = require("../config/connection");
 const Role = require("./Role");
 
 class Emps extends Model {}
-// model frame goes here with - datatypes attributes
 
 Emps.init(
   {
-    // table collumns
+    // table columns
     emp_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -21,6 +20,17 @@ Emps.init(
     last_name: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    is_manager: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      references: {
+        // This is a reference to another model
+        model: Role,
+
+        // This is the column name of the referenced model
+        key: "is_manager",
+      },
     },
     role_id: {
       type: DataTypes.INTEGER,
