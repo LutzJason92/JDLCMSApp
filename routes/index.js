@@ -5,7 +5,4 @@ router.use("/api", apiRoutes);
 
 // inquirer prompts here
 
-
-
-
 module.exports = router;
