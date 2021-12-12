@@ -4,7 +4,7 @@ const Emps = require("../models/Emps");
 const Dep = require("../models/Dep");
 const Role = require("../models/Role");
 
-const empSeedData = require("./EmpsSeedData.json");
+const empSeedData = require("./empSeedData.json");
 const depSeedData = require("./depSeedData.json");
 const roleSeedData = require("./roleSeedData.json");
 
