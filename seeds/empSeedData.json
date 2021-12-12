@@ -1,11 +1,18 @@
 [
     {
         "first_name": "Jason",
-        "last_name": "Lutz"
+        "last_name": "Lutz",
+        "dep_id": 2,
+        "is_manager": false,
+        "role_id": 4
     },
     {
         "first_name": "Ben",
-        "last_name": "Macho"
+        "last_name": "Macho",
+        "dep_id": 2,
+        "is_manager": true,
+        "role_id": 3
+
     }
 
 ]
