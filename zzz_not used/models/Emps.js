@@ -21,17 +21,6 @@ Emps.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    is_manager: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-      references: {
-        // This is a reference to another model
-        model: Role,
-
-        // This is the column name of the referenced model
-        key: "is_manager",
-      },
-    },
     role_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -41,6 +30,16 @@ Emps.init(
 
         // This is the column name of the referenced model
         key: "role_id",
+      },
+    },
+    manager_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        // This is a reference to another model
+        model: Emps,
+        // This is the column name of the referenced model
+        key: "emp_id",
       },
     },
   },

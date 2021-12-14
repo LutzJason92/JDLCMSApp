@@ -21,10 +21,6 @@ Role.init(
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    is_manager: {
-      type: DataTypes.BOOLEAN,
-      allowNull: true,
-    },
     dep_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
