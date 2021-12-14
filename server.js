@@ -241,6 +241,56 @@ const addEmp = () => {
     });
 };
 
-// updateEmp();
+const updateEmp = () => {
+  // console.clear();
+  console.log("to update an Employees role, answer the following questions:");
+  inquirer
+    .prompt([
+      {
+        name: "updateId",
+        type: "input",
+        message: "What is the ID# of the employee you wish to update?",
+      },
+      {
+        name: "roleId",
+        type: "input",
+        message:
+          "What is the Role ID of the position this employee is moving into?",
+      },
+    ])
+    .then((res) => {
+      db.query(
+        `UPDATE Employees SET role_id = ? WHERE emp_id = ?`,
+        [res.roleId, res.updateId],
+        function (err) {
+          if (err) throw err;
+          console.table(res);
+          init();
+        }
+      );
+    });
+};
 
-// destroyEmp();
+const destroyEmp = () => {
+  // console.clear();
+  console.log("To Delete and Employee, answer the following questions:");
+  inquirer
+    .prompt([
+      {
+        name: "deleteId",
+        type: "input",
+        message: "What is the ID# of the employee you wish to delete?",
+      },
+    ])
+    .then((res) => {
+      db.query(
+        `DELETE FROM Employees WHERE ?`,
+        { emp_id: res.deleteId },
+        function (err) {
+          if (err) throw err;
+          console.table(res);
+          init();
+        }
+      );
+    });
+};
