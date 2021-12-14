@@ -13,7 +13,7 @@ VALUES ("Sales Lead", 100000, 1),
  ("Account Manager", 160000, 3),
  ("Accountant", 125000, 3),
  ("Legal Team Lead", 250000, 4),
- ("Lawyer", 190000, 4),
+ ("Lawyer", 190000, 4);
        
 
 
@@ -22,6 +22,5 @@ VALUES
     ("Jason", "Lutz", 4, 2),
     ("Ben", "Macho", 3, null),
     ("Cameron", "Sample", 5, null),
-    ("Aaron", "Sample", 4, 2),
+    ("Aaron", "Sample", 4, 2)
    
-       
