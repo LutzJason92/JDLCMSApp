@@ -36,62 +36,67 @@ const initOptions = [
 
 // inquirer prompts go here
 const init = () => {
-  // console.clear();
   console.log("JDL CMS APP");
-
   inquirer
     .prompt({
       name: "userOption",
       type: "list",
-      message: "Select From the following options:",
+      message: "Select from the following options:",
       choices: initOptions,
     })
-
     .then((optionSelections) => {
       switch (optionSelections.userOption) {
         // "View all Departments",
         case "View all Departments":
           viewAllDeps();
+          console.clear();
           break;
         // "View all Roles",
         case "View all Roles":
           viewAllRoles();
+          console.clear();
           break;
         // "View all Employees",
         case "View all Employees":
           viewAllEmps();
+          console.clear();
           break;
         // "Add a Department",
         case "Add a Department":
           addDep();
+
           break;
         // "Add a Role",
         case "Add a Role":
           addRole();
+
           break;
         // "Add an Employee",
         case "Add an Employee":
           addEmp();
+
           break;
         // "Update an Employee Role",
         case "Update an Employee Role":
-          updateEmp();
+          updateEmpRole();
+
           break;
         // "Delete an Employee",
         case "Delete an Employee":
           destroyEmp();
+
           break;
         // "Exit CMS",
         case "Exit CMS":
-          console.clear();
           console.log("Thank You for using JDL CMS APP");
-          connection.end();
+          db.end();
           break;
       }
     });
 };
 
 const viewAllDeps = () => {
+  console.clear();
   console.log("View All Departments:");
   db.query(
     `SELECT * FROM Departments
@@ -105,10 +110,12 @@ const viewAllDeps = () => {
       );
     }
   );
+  console.clear();
   init();
 };
 
 const viewAllRoles = () => {
+  console.clear();
   console.log("View All Roles:");
   db.query(
     `SELECT * FROM Roles
@@ -119,12 +126,32 @@ const viewAllRoles = () => {
       console.table("Displaying all Roles", res);
     }
   );
+  console.clear();
   init();
 };
 const viewAllEmps = () => {
-  console.log("View All Roles:");
+  console.clear();
+  console.log("View All Employees:");
   db.query(
-    `SELECT * FROM Employees
+    `SELECT 
+    Employees.emp_id, 
+    Employees.first_name, 
+    Employees.last_name, 
+    Roles.title, 
+    Departments.dep_name AS Department, 
+    Roles.salary, 
+    CONCAT(m.first_name, ' ', m.last_name) as Manager
+    
+    FROM Employees
+    
+    LEFT JOIN Roles
+    ON Employees.role_id = Roles.role_id
+
+    LEFT JOIN Departments
+    ON Departments.dep_id = Roles.dep_id
+    
+    LEFT JOIN Employees m
+    ON m.emp_id = Employees.manager_id
     `,
     (err, res) => {
       if (err) throw err;
@@ -133,12 +160,12 @@ const viewAllEmps = () => {
     }
   );
   console.log("Select another Operation");
+  console.clear();
   init();
 };
 
 const addDep = () => {
-  // console.clear();
-  console.log("Add a Department:");
+  console.log("to ADD a Departmentanswer the following questions:");
   inquirer
     .prompt({
       name: "addDepartment",
@@ -159,8 +186,7 @@ const addDep = () => {
 };
 
 const addRole = () => {
-  // console.clear();
-  console.log("Add a Role:");
+  console.log("to ADD a Role, answer the following questions:");
   inquirer
     .prompt([
       {
@@ -198,7 +224,6 @@ const addRole = () => {
 };
 
 const addEmp = () => {
-  // console.clear();
   console.log("to ADD an Employee, answer the following questions:");
   inquirer
     .prompt([
@@ -241,15 +266,14 @@ const addEmp = () => {
     });
 };
 
-const updateEmp = () => {
-  // console.clear();
-  console.log("to update an Employees role, answer the following questions:");
+const updateEmpRole = () => {
+  console.log("to UPDATE an Employees Role, answer the following questions:");
   inquirer
     .prompt([
       {
         name: "updateId",
         type: "input",
-        message: "What is the ID# of the employee you wish to update?",
+        message: "What is the ID# of the Employee you wish to update?",
       },
       {
         name: "roleId",
@@ -272,14 +296,13 @@ const updateEmp = () => {
 };
 
 const destroyEmp = () => {
-  // console.clear();
-  console.log("To Delete and Employee, answer the following questions:");
+  console.log("To DELETE an Employee, answer the following questions:");
   inquirer
     .prompt([
       {
         name: "deleteId",
         type: "input",
-        message: "What is the ID# of the employee you wish to delete?",
+        message: "What is the ID# of the Employee you wish to DELETE?",
       },
     ])
     .then((res) => {
